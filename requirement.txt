@@ -28,3 +28,5 @@ diffusers
 gradio
 openai
 accelerate
+salesforce-lavis
+webuiapi
