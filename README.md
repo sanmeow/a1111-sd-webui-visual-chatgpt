@@ -1,3 +1,28 @@
+WEBUI API version of Visual ChatGPT
+
+Because putting all those models in VRAM was just too heavy,I decide to make a API version for using AUTOMATIC1111 stable-diffusion-webui.
+Sharing this version is for helping who want to try out.
+
+WORK IN PROCESS!
+#What was change
+Use webui api https://github.com/mix1009/sdwebuiapi
+Change to BLIP2 COCO for VQA and caption
+Working parts T2I ,CAPTION, VQA 
+EMBED PREFIX and INSTRUCTIONS and SUFFIX , beware heavy token usage while debugging!
+fix windows version preview
+
+#TODO list 
+Get all other functions back through API
+Support WD Tagger for describe PROMPT
+Make it a Extension inside AUTOMATIC1111 SD webui
+SELF NEED FUNCTION example:generate line-drawing version of art which loads LORA,generate pano,generate 3D etc
+DISCORD chatbot version
+CODE clean-up
+
+#Post-script
+First time using GITHUB fork, if any part doing wrong I'll try to fix it.
+
+
 # Visual ChatGPT 
 
 **Visual ChatGPT** connects ChatGPT and a series of Visual Foundation Models to enable **sending** and **receiving** images during chatting.
