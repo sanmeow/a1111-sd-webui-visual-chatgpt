@@ -1,31 +1,45 @@
-**WEBUI API version of Visual ChatGPT**
+# WEBUI API version of Visual ChatGPT
 
 Because putting all those models in VRAM was just too heavy,I decide to make a API version for using AUTOMATIC1111 stable-diffusion-webui.  
 Sharing this version is for helping who want to try it out.  
 
-**WORK IN PROCESS!**
+# WORK IN PROCESS!
+
+Windows Installation:
+```
+git clone https://github.com/sanmeow/a1111-sd-webui-visual-chatgpt.git
+cd a1111-sd-webui-visual-chatgpt
+
+python -m venv venv
+.\venv\Scripts\activate
+
+pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
+pip install --upgrade -r requirements.txt
+
+python visual_chatgpt.py
+```
 
 # What was changed  
-Use webui api https://github.com/mix1009/sdwebuiapi  
-Change to BLIP2 COCO for VQA and caption  
-Working parts T2I ,CAPTION, VQA   
-EMBED PREFIX and INSTRUCTIONS and SUFFIX , beware heavy token usage while debugging!  
-Fix windows version preview  
+Use webui API https://github.com/mix1009/sdwebuiapi  
+Working parts T2I ,CAPTION, VQA  
+Change to BLIP2 COCO for VQA and caption   
+Emebed PREFIX and INSTRUCTIONS and SUFFIX , beware heavy token usage while debugging!  
+Fix windows version preview
 
-# TODO list 
+# Todo list 
 Get all other functions back through API  
-Support WD Tagger for describe PROMPT  
-Make it a Extension inside AUTOMATIC1111 SD webui  
+Need support WD Tagger for describe PROMPT,for now use "I want a cat" instead of "draw me a cat".  
+Make it an Extension inside AUTOMATIC1111 SD webui  
 SELF NEED FUNCTION example:generate line-drawing version of art which loads LORA,generate pano,generate 3D ...etc  
 DISCORD chatbot version  
 CODE clean-up  
 
 # Post-script
 First time using GITHUB fork, if any part doing wrong I'll try to fix it.  
-
-
-
-
+　  
+　  
+　  
+　  
 # Visual ChatGPT 
 
 **Visual ChatGPT** connects ChatGPT and a series of Visual Foundation Models to enable **sending** and **receiving** images during chatting.
