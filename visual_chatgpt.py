@@ -102,7 +102,7 @@ class ConversationBot:
         self.llm = OpenAI(temperature=0)
         #self.edit = ImageEditing()
         self.i2t = ImageCaptioning(device="cuda:0") #combine VQA
-        self.t2i = T2I(device="cuda:1")
+        self.t2i = T2I(device="cuda:0")
         #self.image2canny = image2canny()
         #self.canny2image = canny2image()
         #self.image2line = image2line()
@@ -126,9 +126,6 @@ class ConversationBot:
             Tool(name="Get Photo Description", func=self.i2t.inference,
                  description="useful when you want to know what is inside the photo. receives image_path as input. "
                              "The input to this tool should be a string, representing the image_path. "),
-            Tool(name="Generate Image Condition On Canny Image", func=self.canny2image.inference,
-                 description="useful when you want to generate a new real image from both the user desciption and a canny image. like: generate a real image of a object or something from this canny image, or generate a new real image of a object or something from this edge image. "
-                             "The input to this tool should be a comma seperated string of two, representing the image_path and the user description. "),
             Tool(name="Generate Image From User Input Text", func=self.t2i.inference,
                  description="useful when you want to generate an image from a user input text and save it to a file. like: generate an image of an object or something, or generate an image that includes some objects. "
                              "The input to this tool should be a string, representing the text used to generate image. "),
@@ -149,13 +146,12 @@ class ConversationBot:
         print("===============Running run_text =============")
         print("Inputs:", text, state)
         print("======>Previous memory:\n %s" % self.agent.memory)
-        self.agent.memory.buffer = cut_dialogue_history(self.agent.memory.buffer, keep_last_n_words=500)
+        self.agent.memory.buffer = cut_dialogue_history(self.agent.memory.buffer, keep_last_n_words=100)
         res = self.agent({"input": text})
         print("======>Current memory:\n %s" % self.agent.memory)
-        #response = re.sub('(image/\S*png)', lambda m: f'![](/file={m.group(0)})*{m.group(0)}*', res['output'].replace("\\", "/"))
         
         #FIX WINDOWS PREVIEW, see ISSUE108 https://github.com/microsoft/visual-chatgpt/issues/108#issuecomment-1465247501
-        
+        response = re.sub('(image/\S*png)', lambda m: f'![](/file={m.group(0)})*{m.group(0)}*', res['output'].replace("\\", "/"))
         state = state + [(text, response[:-1]+" ")]
         print("Outputs:", state)
         return state, state
@@ -201,7 +197,7 @@ class T2I:
         #refined_text = self.text_refine_gpt2_pipe(text)[0]["generated_text"]
         #print(f'{text} refined to {refined_text}')
         image = api.txt2img(prompt=text,
-                    negative_prompt="ugly, out of frame",
+                    negative_prompt="EasyNegative,extra fingers,fewer fingers, (worst quality:1.4), (low quality:1.4) ",
                     seed=-1,
 #                    styles=["anime"],
                     cfg_scale=7,
@@ -231,7 +227,7 @@ class ImageCaptioning:
         self.model, self.vis_processors, self.txt_processors = load_model_and_preprocess(name="blip2", model_type="coco", is_eval=True, device=device)
 
     def inference(self, image_path):
-        image = self.vis_processors["eval"](Image.open(image_path)).unsqueeze(0).to("cuda:1")
+        image = self.vis_processors["eval"](Image.open(image_path)).unsqueeze(0).to(self.device)
         captions = self.model.generate({"image": image})
         return captions
         
@@ -239,7 +235,7 @@ class ImageCaptioning:
         image_path, question = inputs.split(",")
         raw_image = Image.open(image_path).convert('RGB')
         print(F'BLIPVQA :question :{question}')
-        image=self.vis_processors["eval"](Image.open(image_path)).unsqueeze(0).to("cuda:1")
+        image=self.vis_processors["eval"](Image.open(image_path)).unsqueeze(0).to(self.device)
         answer=self.model.generate({"image": image,"prompt": "Question: {question}"})
         return answer
 
