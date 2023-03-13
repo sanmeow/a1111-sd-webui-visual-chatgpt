@@ -1,27 +1,27 @@
 **WEBUI API version of Visual ChatGPT**
 
-Because putting all those models in VRAM was just too heavy,I decide to make a API version for using AUTOMATIC1111 stable-diffusion-webui.
-Sharing this version is for helping who want to try it out.
+Because putting all those models in VRAM was just too heavy,I decide to make a API version for using AUTOMATIC1111 stable-diffusion-webui.  
+Sharing this version is for helping who want to try it out.  
 
 **WORK IN PROCESS!**
 
-# What was changed
-Use webui api https://github.com/mix1009/sdwebuiapi
-Change to BLIP2 COCO for VQA and caption
-Working parts T2I ,CAPTION, VQA 
-EMBED PREFIX and INSTRUCTIONS and SUFFIX , beware heavy token usage while debugging!
-fix windows version preview
+# What was changed  
+Use webui api https://github.com/mix1009/sdwebuiapi  
+Change to BLIP2 COCO for VQA and caption  
+Working parts T2I ,CAPTION, VQA   
+EMBED PREFIX and INSTRUCTIONS and SUFFIX , beware heavy token usage while debugging!  
+Fix windows version preview  
 
 # TODO list 
-Get all other functions back through API
-Support WD Tagger for describe PROMPT
-Make it a Extension inside AUTOMATIC1111 SD webui
-SELF NEED FUNCTION example:generate line-drawing version of art which loads LORA,generate pano,generate 3D etc
-DISCORD chatbot version
-CODE clean-up
+Get all other functions back through API  
+Support WD Tagger for describe PROMPT  
+Make it a Extension inside AUTOMATIC1111 SD webui  
+SELF NEED FUNCTION example:generate line-drawing version of art which loads LORA,generate pano,generate 3D ...etc  
+DISCORD chatbot version  
+CODE clean-up  
 
 # Post-script
-First time using GITHUB fork, if any part doing wrong I'll try to fix it.
+First time using GITHUB fork, if any part doing wrong I'll try to fix it.  
 
 
 
