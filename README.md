@@ -24,17 +24,18 @@ python visual_chatgpt.py
 # What was changed  
 Use webui API https://github.com/mix1009/sdwebuiapi  
 Working parts T2I ,CAPTION, VQA  
-Change to BLIP2 COCO for VQA and caption   
-Emebed PREFIX and INSTRUCTIONS and SUFFIX , beware heavy token usage while debugging!  
+Change to BLIP2 COCO for VQA and caption    
 Fix windows version preview
 
 # Todo list 
 Get all other functions back through API  
+Emebed PREFIX and INSTRUCTIONS and SUFFIX , beware heavy token usage while debugging! 
 Need support WD Tagger for describe PROMPT,for now use "I want a cat" instead of "draw me a cat".  
 Make it an Extension inside AUTOMATIC1111 SD webui  
 SELF NEED FUNCTION example:generate line-drawing version of art which loads LORA,generate pano,generate 3D ...etc  
 DISCORD chatbot version  
 CODE clean-up  
+Other LLM version
 
 # Post-script
 First time using GITHUB fork, if any part doing wrong I'll try to fix it.  
