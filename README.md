@@ -1,3 +1,6 @@
+Update
+Since Bing Image creator has all the functions that I need. I decide to close this API transfer project. Might make a new API collection for improving other sources generated Art.Thanks for understanding U_U
+
 # WEBUI API version of Visual ChatGPT
 
 Because putting all those models in VRAM was just too heavy,I decide to make a API version for using AUTOMATIC1111 stable-diffusion-webui.  
